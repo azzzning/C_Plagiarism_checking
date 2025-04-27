@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>学生提交</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+<div class="container">
+    <h1><i class="fas fa-user-graduate"></i> 学生作业提交</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <label>姓名：</label>
+        <input type="text" name="name" required>
+        <label>班级：</label>
+        <input type="text" name="class" required>
+        <label>上传文件 (.c/.txt)：</label>
+        <input type="file" name="file" accept=".c,.txt" required>
+        <button type="submit" class="submit-btn">提交</button>
+    </form>
+</div>
+</body>
+</html>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-user-graduate"></i> 学生作业提交</h1>
+    
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div style="color: green; margin-bottom: 1rem;">{{ messages[0] }}</div>
+          {% endif %}
+        {% endwith %}
+    
+        <form method="POST" enctype="multipart/form-data">
+            <!-- 其余表单略 -->
+    

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>查重结果</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="fade-in">
+  <div class="container">
+    <h1><i class="fas fa-file-search"></i> 查重结果分析</h1>
+
+    {% if results %}
+      <!-- 总结段 -->
+      <div class="summary">
+        <h3>📌 总结：</h3>
+        <p>
+          以下学生存在抄袭嫌疑：
+          {% for line in summary %}
+            <br>👥 {{ line }}
+          {% endfor %}
+        </p>
+      </div>
+
+      <!-- 每一对可疑项展示 -->
+      {% for r in results %}
+        <div class="result-card">
+          <p><strong>{{ r.name1 }}（{{ r.class1 }}）</strong> 与 <strong>{{ r.name2 }}（{{ r.class2 }}）</strong></p>
+          <p>相似度：<span class="score">{{ r.similarity }}%</span> | 判定：<strong>{{ r.level }}</strong></p>
+
+          {% if r.matches %}
+            <div class="highlight-block">
+              <h4>相似片段（最多展示5条）：</h4>
+              {% for m in r.matches %}
+                <pre class="highlight"><code>{{ m }}</code></pre>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    {% else %}
+      <div style="color: green; font-weight: bold;">
+        ✅ 未发现抄袭嫌疑，所有提交均为原创或相似度低。
+      </div>
+    {% endif %}
+
+    <p style="margin-top: 2rem; text-align:center;">
+      <a href="/"><i class="fas fa-arrow-left"></i> 返回教师页面</a>
+    </p>
+  </div>
+</body>
+</html>

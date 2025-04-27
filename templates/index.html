@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>教师查重系统</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/teacher.js" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="fade-in">
+  <div class="container">
+    <h1><i class="fas fa-chalkboard-teacher"></i> 教师查重管理系统</h1>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <p class="success">{{ messages[0] }}</p>
+      {% endif %}
+    {% endwith %}
+
+    <p><strong>📦 当前共提交代码：{{ total }} 份</strong></p>
+
+    <!-- 教师上传入口 -->
+    <form method="POST" action="/upload_teacher" enctype="multipart/form-data" class="upload-form">
+      <label>📁 教师上传代码文件：
+        <input type="file" name="files" accept=".txt,.c" multiple required>
+      </label>
+      <button type="submit" class="upload-btn"><i class="fas fa-upload"></i> 上传</button>
+    </form>
+
+    <!-- 查重 / 删除 表单 -->
+    <form method="POST" action="/process" id="main-form">
+      <input type="text" id="search-box" placeholder="🔍 按姓名搜索..." />
+
+      <div style="margin-top: 0.8rem;">
+        <label><input type="checkbox" id="select-page"> 仅选中当前页</label>
+        <button type="button" id="select-all-btn" class="upload-btn" style="margin-left:1rem;">
+          ✅ 全选全部文件
+        </button>
+        <button type="button" id="clear-all-btn" class="delete-btn" style="margin-left:0.5rem;">
+          ❌ 清除所有选择
+        </button>
+      </div>
+
+      <!-- 注入所有文件名 -->
+      <div id="all-filenames-hidden" style="display:none;">
+        {% for fname in all_filenames %}
+          <input type="hidden" class="all-filename" value="{{ fname }}">
+        {% endfor %}
+      </div>
+
+      <!-- 当前页列表 -->
+      <div class="file-list">
+        {% for item in submissions %}
+          <label class="file-item" data-name="{{ item.name|lower }}">
+            <input type="checkbox" class="select-box" name="selected" value="{{ item.filename }}">
+            <i class="fas fa-file-code"></i>
+            <a href="/view/{{ item.filename }}" target="_blank">
+              {{ item.name }}（{{ item.class }}） - {{ item.filename }}
+            </a>
+          </label>
+        {% endfor %}
+      </div>
+
+      <div style="margin-top: 1.5rem;">
+        <button name="action" value="compare" class="submit-btn"><i class="fas fa-search"></i> 开始查重</button>
+        <button name="action" value="delete" class="delete-btn" onclick="return confirm('确认删除所选文件吗？')"><i class="fas fa-trash"></i> 删除选中</button>
+      </div>
+    </form>
+
+    {% if total_pages > 1 %}
+      <div class="pagination" style="margin-top: 2rem; text-align: center;">
+        {% for p in range(1, total_pages + 1) %}
+          {% if p == page %}
+            <strong>[{{ p }}]</strong>
+          {% else %}
+            <a href="/?page={{ p }}">{{ p }}</a>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <hr>
+    <p style="text-align:center; margin-top: 2rem;">
+      <a href="/student"><i class="fas fa-user-graduate"></i> 去学生提交入口</a>
+    </p>
+  </div>
+</body>
+</html>
