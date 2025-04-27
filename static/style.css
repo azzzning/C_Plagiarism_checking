@@ -1,0 +1,144 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #f9fafb;
+    margin: 0;
+    padding: 2rem;
+    color: #1e293b;
+  }
+  
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 2rem 2.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+  }
+  
+  h1 {
+    margin-bottom: 1rem;
+    color: #3b82f6;
+    font-size: 1.8rem;
+  }
+  
+  .success {
+    color: green;
+    font-weight: bold;
+    margin: 1rem 0;
+  }
+  
+  .upload-form {
+    margin-bottom: 1.5rem;
+    background: #f3f4f6;
+    padding: 1rem;
+    border-radius: 0.5rem;
+  }
+  
+  .upload-form input[type="file"] {
+    margin-left: 1rem;
+  }
+  
+  .upload-btn {
+    margin-left: 1rem;
+    background: #10b981;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .upload-btn:hover {
+    background: #059669;
+  }
+  
+  input[type="text"]#search-box {
+    width: 100%;
+    padding: 0.6rem;
+    margin: 1rem 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+  
+  .file-list {
+    margin-top: 1rem;
+  }
+  
+  .file-item {
+    display: block;
+    margin: 0.5rem 0;
+    padding: 0.6rem;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .file-item input {
+    margin-right: 0.6rem;
+  }
+  
+  .file-item a {
+    color: #1e40af;
+    text-decoration: none;
+  }
+  
+  .file-item a:hover {
+    text-decoration: underline;
+  }
+  
+  .submit-btn, .delete-btn {
+    padding: 0.6rem 1.4rem;
+    margin-right: 1rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .submit-btn {
+    background: #3b82f6;
+    color: white;
+  }
+  
+  .submit-btn:hover {
+    background: #2563eb;
+  }
+  
+  .delete-btn {
+    background: #ef4444;
+    color: white;
+  }
+  
+  .delete-btn:hover {
+    background: #dc2626;
+  }
+  
+  .pagination a {
+    margin: 0 0.3rem;
+    text-decoration: none;
+    color: #3b82f6;
+  }
+  
+  .pagination strong {
+    margin: 0 0.3rem;
+    color: #111827;
+  }
+  
+  .highlight {
+    background: #fef3c7;
+    border-left: 4px solid #facc15;
+    padding: 0.6rem;
+    margin: 0.5rem 0;
+    white-space: pre-wrap;
+    font-family: monospace;
+    border-radius: 6px;
+  }
+  
+  .fade-in {
+    animation: fadeIn 0.4s ease;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  
