@@ -1,4 +1,4 @@
-flask==2.0.1
-werkzeug==2.0.1
+flask==3.0.0
+werkzeug==3.0.0
 pygments==2.10.0
 gunicorn==20.1.0
